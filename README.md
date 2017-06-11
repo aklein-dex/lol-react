@@ -2,7 +2,7 @@
 
 Small project to play with [React](https://facebook.github.io/react/) and [Sinatra](http://www.sinatrarb.com).
 
-It displays information about the summoner name submited.
+It displays information about the summoner name submited (see example.png).
 
 ### 
 ### Installation
