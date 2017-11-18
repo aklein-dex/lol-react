@@ -36,14 +36,14 @@ var Champion = React.createClass({
 // This class returns information about a game.
 var Game = React.createClass({
   wonOrLost: function() {
-    if (this.props.game.stats.win) {
+    if (this.props.game.win) {
       return (<span><strong>WON</strong></span>);
     } else {
       return (<span>LOST</span>);
     }
   },
   backgroundColor: function() {
-    if (this.props.game.stats.win) {
+    if (this.props.game.win) {
       return ("col s12 m7 teal");
     } else {
       return ("col s12 m7 red lighten-3");
@@ -60,9 +60,9 @@ var Game = React.createClass({
                   <div style={divStyle}> 
                       <ul>
                           <li>{this.wonOrLost()}</li>
-                          <li>kills:   {this.props.game.stats.championsKilled}</li>
-                          <li>Assists: {this.props.game.stats.assists}</li>
-                          <li>Deaths:  {this.props.game.stats.numDeaths}</li>
+                          <li>kills:   {this.props.game.kills}</li>
+                          <li>Assists: {this.props.game.assists}</li>
+                          <li>Deaths:  {this.props.game.deaths}</li>
                       </ul>
                   </div>
               </div>
@@ -85,13 +85,13 @@ var GameList = React.createClass({
   getInitialState: function() {
     return {games: []};
   },
-  getListOfGames: function(summonerId) {
+  getListOfGames: function(accountId) {
     $.ajax({
-      url: getListOfGamesUrl(summonerId),
+      url: getListOfGamesUrl(accountId),
       dataType: 'json',
       type: 'GET',
       success: function(result) {
-        this.setState({games: result["games"]});
+        this.setState({games: result});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -99,10 +99,10 @@ var GameList = React.createClass({
     });
   },
   componentDidMount: function() {
-    this.getListOfGames(this.props.summonerId);
+    this.getListOfGames(this.props.accountId);
   },
   componentWillReceiveProps: function(nextProps) {
-    this.getListOfGames(nextProps.summonerId);
+    this.getListOfGames(nextProps.accountId);
   },
   render: function() {
     var games = this.state.games.map(function(game) {
@@ -130,9 +130,10 @@ var PlayerInfo = React.createClass({
             <li>Profile icon id: {this.props.profileIconId}</li>
             <li>Summoner level: {this.props.summonerLevel}</li>
             <li>Revision date: {this.props.revisionDate}</li>
+            <li>Account id: {this.props.accountId}</li>
             <li>Game history:</li>
           </ul>
-          <GameList summonerId={this.props.summonerId}/>
+          <GameList accountId={this.props.accountId}/>
         </div>);
     } else {
       return false;
@@ -181,7 +182,8 @@ var PlayerBox = React.createClass({
             name: '',
             profileIconId: '',
             summonerLevel: '',
-            revisionDate: ''
+            revisionDate: '',
+            accountId: '',
            };
   },
   // action when the user click on submit.
@@ -192,12 +194,13 @@ var PlayerBox = React.createClass({
       type: 'GET',
       success: function(result) {
         // yay! We received information about the summoner.
-        var summoner = result[player.player];
+        var summoner = result;
         this.setState({summonerId: summoner.id,
                        name: summoner.name,
                        profileIconId: summoner.profileIconId,
                        summonerLevel: summoner.summonerLevel,
-                       revisionDate: summoner.revisionDate});
+                       revisionDate: summoner.revisionDate,
+                       accountId: summoner.accountId});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -216,7 +219,8 @@ var PlayerBox = React.createClass({
                     name={this.state.name} 
                     profileIconId={this.state.profileIconId} 
                     summonerLevel={this.state.summonerLevel} 
-                    revisionDate={this.state.revisionDate} />
+                    revisionDate={this.state.revisionDate}
+                    accountId={this.state.accountId} />
       </div>
     );
   }
