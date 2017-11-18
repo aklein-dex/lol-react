@@ -26,9 +26,7 @@ class MySinatraApp < Sinatra::Base
     # For each match, we need to do another request to get the statistic
     matches["matches"].each do |match|
       matchInfo = JSON.parse(open("#{URL}/match/v3/matches/#{match['gameId']}?api_key=#{API_KEY}").read)
-      puts "--> #{match['gameId']}"
       participantId = 0
-      puts "  accid: #{params['accountId']}" 
       
       # We need to know the participantId
       matchInfo["participantIdentities"].each do |participant|

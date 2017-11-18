@@ -44,6 +44,12 @@ $ git push heroku master
 $ heroku open
 ```
 
+### Limitation
+
+If you don't register your project with Riot, then you API key is available just for a hours.
+
+The number of requests to the API is limited. If the limit is exceeded then an error 429 is returned.
+
 ### Script
 
 The React script file is here: [public/javascripts/lol-react.js](https://github.com/aklein-dex/lol-react/blob/master/public/javascripts/lol-react.js)
