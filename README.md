@@ -8,7 +8,7 @@ that shows the result of the last 10 games
 played in [League of Legends](https://na.leagueoflegends.com/) for a specific player.
 
 Riot is changing the API more frequently than I update this project. So it may
-stop working. Here are 2 pictures to see the this project: example.png, example-class.png.
+stop working. Here are 2 pictures to see the this project: [example.png](https://raw.githubusercontent.com/aklein-dex/lol-react/master/example.png), [example-class.png](https://raw.githubusercontent.com/aklein-dex/lol-react/master/example-class.png).
 
 ### Installation
 
@@ -46,7 +46,7 @@ $ heroku open
 
 ### Limitation
 
-If you don't register your project with Riot, then you API key is available just for a hours.
+If you don't register your project with Riot, then you API key is available just for few hours.
 
 The number of requests to the API is limited. If the limit is exceeded then an error 429 is returned.
 
