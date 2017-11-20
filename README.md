@@ -8,11 +8,11 @@ that shows the result of the last 10 games
 played in [League of Legends](https://na.leagueoflegends.com/) for a specific player.
 
 Riot is changing the API more frequently than I update this project. So it may
-stop working. Here are 2 pictures to see the this project: [example.png](https://raw.githubusercontent.com/aklein-dex/lol-react/master/example.png), [example-class.png](https://raw.githubusercontent.com/aklein-dex/lol-react/master/example-class.png).
+stop working. Here are 2 pictures to see this project: [example.png](https://raw.githubusercontent.com/aklein-dex/lol-react/master/example.png), [example-class.png](https://raw.githubusercontent.com/aklein-dex/lol-react/master/example-class.png).
 
 ### Installation
 
-First you need a API key from Riot: https://developer.riotgames.com/
+This project requires an API key from Riot: https://developer.riotgames.com/
 
 Set an environment variable with your API key:
 ```
